@@ -20,16 +20,19 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.params.StreamConfigurationMap;
+import android.media.AudioManager;
 import android.media.Image;
 import android.media.Image.Plane;
 import android.media.ImageReader;
 import android.media.ImageReader.OnImageAvailableListener;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -37,15 +40,23 @@ import android.os.HandlerThread;
 import android.os.Trace;
 import android.util.Size;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import java.nio.ByteBuffer;
+
+import org.tensorflow.demo.classescheckpet.Animal;
+import org.tensorflow.demo.classescheckpet.JanelaSobre;
 import org.tensorflow.demo.env.ImageUtils;
+import org.tensorflow.demo.classescheckpet.ImagemActivity;
 import org.tensorflow.demo.env.Logger;
-import org.tensorflow.demo.R; // Explicit import needed for internal Google builds.
 
 public abstract class CameraActivity extends Activity
     implements OnImageAvailableListener, Camera.PreviewCallback {
+
   private static final Logger LOGGER = new Logger();
 
   private static final int PERMISSIONS_REQUEST = 1;
@@ -68,14 +79,66 @@ public abstract class CameraActivity extends Activity
 
   private Runnable postInferenceCallback;
   private Runnable imageConverter;
+  private Bundle savedInstanceState;
+  Context context;
+  int endereco;
 
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
     LOGGER.d("onCreate " + this);
     super.onCreate(null);
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
     setContentView(R.layout.activity_camera);
+
+
+      //Cria um objeto do tipo Animal
+    final Animal animal = new Animal(this);
+
+      //Botão para o audio dos animais
+    ImageButton BotaoAudio = (ImageButton)findViewById(R.id.imageButtonSom);
+
+      //Botão para imagem dos animais
+    ImageButton BotaoImagem = (ImageButton)findViewById(R.id.imageButtonFoto);
+
+      //Botão para informações do aplicativo
+    ImageButton BotaoSobre = (ImageButton)findViewById(R.id.imageButtonSobre);
+
+      //Pressionando o botão, se o nome estiver vazio, não executa nada
+    BotaoAudio.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        if(animal.getNomeAnimal().equalsIgnoreCase("")){
+
+        }
+          //se já houver nome armazenado, chama o método que busca o audio na classe Animal
+        else{
+        animal.getAudioAnimal();
+        }
+      }
+    });
+      //Pressionando o botão, se o nome estiver vazio, não executa nada
+    BotaoImagem.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        if(animal.getNomeAnimal().equalsIgnoreCase("")){
+
+        }
+            //Se já houver nome armazenado, através do Intent muda para a activity da imagem, a ImagemActivity.java
+        else{
+          Intent muda = new Intent(getApplicationContext(),ImagemActivity.class);
+         startActivity(muda);
+
+        }
+      }
+    });
+      //Pressionando o botão, através de um Intent exibe a janela com as informações sobre o App
+    BotaoSobre.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+          Intent muda = new Intent(getApplicationContext(), JanelaSobre.class);
+          startActivity(muda);
+      }
+    });
 
     if (hasPermission()) {
       setFragment();
@@ -232,11 +295,7 @@ public abstract class CameraActivity extends Activity
   @Override
   public synchronized void onPause() {
     LOGGER.d("onPause " + this);
-
-    if (!isFinishing()) {
-      LOGGER.d("Requesting finish");
-      finish();
-    }
+    super.onPause();
 
     handlerThread.quitSafely();
     try {
@@ -247,7 +306,6 @@ public abstract class CameraActivity extends Activity
       LOGGER.e(e, "Exception!");
     }
 
-    super.onPause();
   }
 
   @Override
@@ -261,6 +319,7 @@ public abstract class CameraActivity extends Activity
     LOGGER.d("onDestroy " + this);
     super.onDestroy();
   }
+
 
   protected synchronized void runInBackground(final Runnable r) {
     if (handler != null) {
@@ -412,9 +471,9 @@ public abstract class CameraActivity extends Activity
   @Override
   public boolean onKeyDown(final int keyCode, final KeyEvent event) {
     if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN || keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
-      debug = !debug;
+      /*debug = !debug;
       requestRender();
-      onSetDebug(debug);
+      onSetDebug(debug);*/
       return true;
     }
     return super.onKeyDown(keyCode, event);

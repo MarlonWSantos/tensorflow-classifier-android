@@ -15,4 +15,19 @@
 -->
 <resources>
     <style name="MaterialTheme" parent="android:Theme.Material.Light.NoActionBar.Fullscreen" />
+
+    <!--Tema específico da Tela Inicial-->
+    <style name="AppTheme.NoActionBar" parent="AppTheme.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="PopUp">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+
+    </style>
 </resources>

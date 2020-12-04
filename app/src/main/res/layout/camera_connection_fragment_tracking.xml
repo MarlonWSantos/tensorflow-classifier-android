@@ -13,9 +13,11 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    >
 
       <org.tensorflow.demo.AutoFitTextureView
           android:id="@+id/texture"
@@ -31,4 +33,5 @@
           android:id="@+id/debug_overlay"
           android:layout_width="match_parent"
           android:layout_height="match_parent"/>
-</FrameLayout>
+
+</RelativeLayout>

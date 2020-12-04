@@ -16,22 +16,32 @@ limitations under the License.
 package org.tensorflow.demo;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import org.tensorflow.demo.Classifier.Recognition;
+import org.tensorflow.demo.classescheckpet.Animal;
+import org.tensorflow.demo.classescheckpet.ImagemActivity;
 
 import java.util.List;
 
 public class RecognitionScoreView extends View implements ResultsView {
-  private static final float TEXT_SIZE_DIP = 24;
+  private static final float TEXT_SIZE_DIP = 40;
   private List<Recognition> results;
   private final float textSizePx;
   private final Paint fgPaint;
   private final Paint bgPaint;
+  private String name;
+  private Bitmap image;
+    //Cria objeto "animal" da classe "Animal"
+  Animal animal = Animal.getInstance();
 
   public RecognitionScoreView(final Context context, final AttributeSet set) {
     super(context, set);
@@ -52,17 +62,25 @@ public class RecognitionScoreView extends View implements ResultsView {
     postInvalidate();
   }
 
+    //Método que desenha no canvas o resultado do reconhecimento
   @Override
   public void onDraw(final Canvas canvas) {
     final int x = 10;
-    int y = (int) (fgPaint.getTextSize() * 1.5f);
+    int y = (int) (fgPaint.getTextSize() * 1.0f);
 
     canvas.drawPaint(bgPaint);
-
     if (results != null) {
       for (final Recognition recog : results) {
-        canvas.drawText(recog.getTitle() + ": " + recog.getConfidence(), x, y, fgPaint);
-        y += fgPaint.getTextSize() * 1.5f;
+          //Armazena o resultado do reconhecimento
+        name=recog.getTitle();
+          //Envia para a classe animal o nome para ser analizado
+        animal.setNome(name);
+          //Recebe da classe animal o nome já analizado
+        name=animal.getNomeAnimal();
+          //Exibe no canvas o nome do animal
+        canvas.drawText(name,x,y,fgPaint);
+
+        break;
       }
     }
   }

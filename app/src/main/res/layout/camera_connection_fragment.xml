@@ -14,25 +14,33 @@
  limitations under the License.
 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    > <!--1a camada-->
 
+    <!--Parte visual da câmera central, abaixo da faixa branca e azul-->
     <org.tensorflow.demo.AutoFitTextureView
         android:id="@+id/texture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" />
+        android:layout_centerInParent="true"
+        />
 
+    <!--Parte azul da tela onde é exibido o nome do animal, independente da parte branca-->
     <org.tensorflow.demo.RecognitionScoreView
         android:id="@+id/results"
         android:layout_width="match_parent"
-        android:layout_height="112dp"
-        android:layout_alignParentTop="true" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/texture"/>
 
     <org.tensorflow.demo.OverlayView
         android:id="@+id/debug_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"/>
 
 </RelativeLayout>

@@ -24,10 +24,10 @@
     android:layout_alignParentTop="true" />
 
   <RelativeLayout
-    android:id="@+id/black"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FF000000" />
+      android:id="@+id/black"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@android:color/black" />
 
   <GridView
     android:id="@+id/grid_layout"
@@ -44,8 +44,8 @@
       android:layout_alignParentTop="true" />
 
   <org.tensorflow.demo.OverlayView
-    android:id="@+id/debug_overlay"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_alignParentTop="true" />
+      android:id="@+id/debug_overlay"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_alignParentTop="true" />
 </RelativeLayout>

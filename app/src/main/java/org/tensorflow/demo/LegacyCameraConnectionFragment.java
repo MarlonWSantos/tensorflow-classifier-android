@@ -17,6 +17,7 @@ package org.tensorflow.demo;
  */
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.hardware.Camera.CameraInfo;
@@ -30,6 +31,8 @@ import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import java.io.IOException;
 import java.util.List;
 import org.tensorflow.demo.env.ImageUtils;
@@ -158,8 +161,10 @@ public class LegacyCameraConnectionFragment extends Fragment {
     // the SurfaceTextureListener).
 
     if (textureView.isAvailable()) {
-      camera.startPreview();
-    } else {
+        //Ao voltar da pausa, aqui no onResume(), este Intent reinicia o Tensorflow
+      Intent muda = new Intent(getActivity(),ClassifierActivity.class);
+      startActivity(muda);
+    }else {
       textureView.setSurfaceTextureListener(surfaceTextureListener);
     }
   }
