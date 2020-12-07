@@ -13,9 +13,11 @@ I am not planning to maintain it. If you need an updated version, build it yours
 
 ## Projeto Android de Nilhcem adaptado para reconhecimento de animais
 
-<img src="https://github.com/MarlonWSantos/tensorflow-classifier-android/blob/master/prints/tela-inicial.png" alt="Tela Inicial" height="100"/>
-
-<img src="https://github.com/MarlonWSantos/tensorflow-classifier-android/blob/master/prints/reconhecimento-gato.png" alt="Gato" height="100"/>
-
-<img src="https://github.com/MarlonWSantos/tensorflow-classifier-android/blob/master/prints/reconhecimento-cachorro.png" alt="Cachorro" height="100"/>
+<div align="center">
+    <figure>
+        <img src="https://github.com/MarlonWSantos/tensorflow-classifier-android/blob/master/prints/tela-inicial.png" alt="Tela inicial" align="left" style="height:60%">
+        <img src="https://github.com/MarlonWSantos/tensorflow-classifier-android/blob/master/prints/tela-inicial.png" alt="Tela gato" align="center" style="height:60%">
+        <img src="https://github.com/MarlonWSantos/tensorflow-classifier-android/blob/master/prints/tela-inicial.png" alt="Tela cão" align="right" style="height:60%">
+    </figure>
+</div>
 
