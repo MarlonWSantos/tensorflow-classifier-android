@@ -15,9 +15,9 @@ I am not planning to maintain it. If you need an updated version, build it yours
 
 <div align="center">
     <figure>
-        <img src="https://github.com/MarlonWSantos/tensorflow-classifier-android/blob/master/prints/tela-inicial.png" alt="Tela inicial" align="left" width="50%" height:"60%">
-        <img src="https://github.com/MarlonWSantos/tensorflow-classifier-android/blob/master/prints/reconhecimento-gato.png" alt="Tela gato" align="center" width="50%" height:"60%">
-        <img src="https://github.com/MarlonWSantos/tensorflow-classifier-android/blob/master/prints/reconhecimento-cachorro.png" alt="Tela cão" align="right" width="50%" height:"60%">
+        <img src="https://github.com/MarlonWSantos/tensorflow-classifier-android/blob/master/prints/tela-inicial.png" alt="Tela inicial" align="left" height="300">
+        <img src="https://github.com/MarlonWSantos/tensorflow-classifier-android/blob/master/prints/reconhecimento-gato.png" alt="Tela gato" align="center"  height="300">
+        <img src="https://github.com/MarlonWSantos/tensorflow-classifier-android/blob/master/prints/reconhecimento-cachorro.png" alt="Tela cão" align="right" height="300">
     </figure>
 </div>
 
